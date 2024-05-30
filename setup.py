@@ -36,7 +36,8 @@ setup(
         "polyswarm-api",
         "pathlib",
         "configparser",
-		"python-magic-bin; platform_system == 'Windows'"
+		"python-magic-bin; platform_system == 'Windows'",
+		"security==1.2.1",
     ],
     scripts=['malwoverview/malwoverview.py'],
     package_data={'': ['README.md, LICENSE, .malwapi.conf']},
