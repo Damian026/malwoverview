@@ -56,6 +56,7 @@ from requests.exceptions import RetryError
 from pathlib import Path
 from io import StringIO, BytesIO
 from requests import Request, Session, exceptions
+from security import safe_command
 
 # On Windows systems, it is necessary to install python-magic-bin: pip install python-magic-bin
 
@@ -10172,7 +10173,7 @@ def checkandroid(engine):
 
     try:
         for h in results2:
-            myconn3 = subprocess.run([adb_comm, "shell", "md5sum", h], text=True, capture_output=True)
+            myconn3 = safe_command.run(subprocess.run, [adb_comm, "shell", "md5sum", h], text=True, capture_output=True)
             x = myconn3.stdout.split(" ")[0]
             final1.append(x)
 
@@ -10266,7 +10267,7 @@ def sendandroidha(package):
     try:
         for j in results2:
             if (package in j):
-                myconn3 = subprocess.run([adb_comm, "pull", j], capture_output=True)
+                myconn3 = safe_command.run(subprocess.run, [adb_comm, "pull", j], capture_output=True)
                 newname = j[10:]
 
     except AttributeError:
@@ -10320,7 +10321,7 @@ def sendandroidvt(package):
     try:
         for j in results2:
             if (package in j):
-                myconn3 = subprocess.run([adb_comm, "pull", j], capture_output=True)
+                myconn3 = safe_command.run(subprocess.run, [adb_comm, "pull", j], capture_output=True)
                 newname = j[10:]
 
     except AttributeError:
